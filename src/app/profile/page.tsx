@@ -59,12 +59,6 @@ const UserProfile = () => {
       >
         Logout
       </button>
-      <button
-        className="p-2 bg-blue-500 text-white rounded mt-4"
-        onClick={getUserDetails}
-      >
-        Get user details
-      </button>
     </div>
   );
 };
