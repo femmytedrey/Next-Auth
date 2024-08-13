@@ -12,11 +12,11 @@ const ResetPassword = () => {
 
   // Extract token from URL
   useEffect(() => {
-    const urlToken = window.location.search.split("=")[1];
+    const urlToken = window.location.search.split("=")[1].toString();
     if (!urlToken) {
       toast.error("Invalid token");
     } else {
-      setToken(urlToken);
+      setToken(decodeURIComponent(urlToken));
     }
   }, []);
 
