@@ -25,9 +25,9 @@ const VerifyEmail = () => {
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
     setToken(urlToken || "");
-  }, [token]);
+  }, []);
 
-  //check if there's token and verify the user
+  //check if theres token and verify the user
   useEffect(() => {
     if (token.length > 0) {
       verifyUserEmail();

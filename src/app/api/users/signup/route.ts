@@ -22,7 +22,7 @@ export const POST = async (request: NextRequest) => {
       );
     }
 
-    //let's hash password
+    //lets hash password
     const salt = await bcryptjs.genSalt(10);
     const hash = await bcryptjs.hash(password, salt);
 
