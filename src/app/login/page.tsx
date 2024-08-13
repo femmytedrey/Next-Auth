@@ -62,7 +62,7 @@ const LoginPage = () => {
         {buttonDisabled ? "Enter credentials" : "Login"}
       </button>
       <Link href="/signup" className="text-blue-500">Signup here</Link>
-      <p className="mt-4">Don't remember your password? <Link className="text-blue-500" href="/forgotpassword">Click here</Link></p>
+      <p className="mt-4">Dont remember your password? <Link className="text-blue-500" href="/forgotpassword">Click here</Link></p>
     </div>
   );
 };

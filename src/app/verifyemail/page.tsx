@@ -6,33 +6,33 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const VerifyEmail = () => {
-  const [token, setToken] = useState("");
-  const [error, setError] = useState(false);
-  const [verified, setVerified] = useState(false);
-
-  const verifyUserEmail = async () => {
-    try {
-      const response = await axios.post("/api/users/verifyemail", { token });
-      setVerified(true);
-      toast.success(response?.data?.message);
-      setError(false);
-    } catch (error: any) {
-      setError(true);
-      toast.error(error?.response?.data?.message);
-    }
-  };
+  const [token, setToken] = useState<string>("");
+  const [error, setError] = useState<boolean>(false);
+  const [verified, setVerified] = useState<boolean>(false);
 
   useEffect(() => {
-    const urlToken = window.location.search.split("=")[1];
-    setToken(urlToken || "");
+    // Extract token from the URL
+    const urlToken = new URLSearchParams(window.location.search).get('token');
+    
+    if (urlToken) {
+      setToken(urlToken);
+
+      // Function to verify user email
+      const verifyUserEmail = async () => {
+        try {
+          const response = await axios.post("/api/users/verifyemail", { token: urlToken });
+          setVerified(true);
+          toast.success(response?.data?.message);
+          setError(false);
+        } catch (error: any) {
+          setError(true);
+          toast.error(error?.response?.data?.message);
+        }
+      };
+
+      verifyUserEmail(); 
+    }
   }, []);
-
-  //check if theres token and verify the user
-  useEffect(() => {
-    if (token.length > 0) {
-      verifyUserEmail();
-    }
-  }, [token]);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1 className="text-4xl">Verify Email</h1>
